@@ -15,7 +15,6 @@ export default class Timer {
     } 
     else if (this.minutes === 0 && this.seconds === 0) {
       this.stop();
-     
     }
     else {
       this.seconds -= 1;
@@ -27,12 +26,28 @@ export default class Timer {
     clearInterval(this.timer);
   }
 
+  pause() {
+    const pauseButton = document.querySelector('.pause');
+    pauseButton.addEventListener('click', () => {
+      this.stop();
+    });
+  }
+
+  play() {
+    const play = document.querySelector('.play');
+    play.addEventListener('click', () => {
+      this.componentDidMount();
+    });
+  }
+
   displayTimer() {
     const display = document.querySelector('.display p');
     display.innerText = `${this.minutes} : ${this.seconds}`;
   }
 
   start() {
+    this.play();
+    this.pause();
     this.componentDidMount();
   }
 }
